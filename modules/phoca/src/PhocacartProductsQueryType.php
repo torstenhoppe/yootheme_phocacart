@@ -169,6 +169,9 @@ class PhocacartProductsQueryType
         if (!empty($product->image)) {
           //$product->image_URL = "<img src='$pathitem->orig_rel_ds.{$product->image}'>";
             $product->image = DS.$pathitem['orig_rel_ds'].$product->image;
+            // Integrate additional images from the product database
+            // zusätzliche Bilder aus Produkt-Datenbank einbinden
+            $product->gallery = PhocacartImage::getImages($product->id, 'product');
             $product->link = JRoute::_(PhocacartRoute::getItemRoute($product->id, $product->catid, $product->alias, $product->catalias));
 
         }

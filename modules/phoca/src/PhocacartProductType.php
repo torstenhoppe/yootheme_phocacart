@@ -16,6 +16,17 @@ class PhocacartProductType
     'link' => 'Link',
   ];
 
+  public statis $fieldsForGallery = [
+     'gallery' => [
+        'label' => 'Product Gallery',
+        'type' => 'gallery'
+    ],
+    'gallery_images' => [
+        'label' => 'Gallery Images',
+        'type' => 'array'
+    ]
+  ];
+
   /**
    * @return array
    */
@@ -26,7 +37,7 @@ class PhocacartProductType
       PCU::init();
 
       $result = PCU::getPhocacartProductFields();
-      $entityFields = PCU::getEntityFields($result, self::$fieldsToKeep, self::$fieldsToAdd);
+      $entityFields = PCU::getEntityFields($result, self::$fieldsToKeep, self::$fieldsToAdd), self::$fieldsForGallery;
       if (!empty($entityFields)) {
         $entityFields['metadata'] = [
           // Label used in the customizer
